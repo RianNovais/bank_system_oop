@@ -28,7 +28,19 @@ while True:
         b.list_accounts()
 
     elif choiceUser == 5:
-        customerId = int(input('Id of customer owner of the account: '))
+        accNumber = int(input('Number of the account'))
+        account = b.search_account(accNumber)
+
+        choiceTransaction = int(input('Choice an option:\n1 - Deposit an account | 2 - Withdraw an account '))
+        if choiceTransaction == 1:
+            value = float(input('Value to deposit: '))
+            account.deposit(value)
+        if choiceTransaction == 2:
+            value = float(input('Value to withdraw: '))
+            account.withdraw(value)
+        else:
+            print('Choice an valid option')
+
         ...
 
 

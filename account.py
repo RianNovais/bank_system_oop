@@ -1,7 +1,9 @@
 from abc import ABC,abstractmethod
 from itertools import count
+from gmail import Gmail
 nAccount = count(start = 1)
 
+g = Gmail()
 class Account(ABC):
     def __init__(self, Customer: int):
         self.nAccount = next(nAccount)
@@ -21,6 +23,8 @@ class SavingAccount(Account):
     def __init__(self, Customer):
         super().__init__(Customer)
         self.Overdraft = False
+
+        g.send_mail_new_account_saving(self.Customer.FirstName, self.Customer.Email)
 
     def deposit(self, value):
         if not value <=0:
@@ -56,6 +60,8 @@ class CheckingAccount(Account):
         super().__init__(Customer)
         self.Overdraft = True
 
+        g.send_mail_new_account_checking(self.Customer.FirstName, self.Customer.Email)
+
     def deposit(self, value):
         if not value <=0:
             self.balance += value
@@ -63,13 +69,13 @@ class CheckingAccount(Account):
             return
         print('invalid value')
 
-    def withdraw(self, value: int):
+    def withdraw(self, value: float):
         if self.Overdraft is True:
             if (self.balance - value) <0:
                 userChoice = input('Overdraft: [Y/N]')
                 if userChoice.lower() == 'y':
                     self.balance = self.balance - value
-                    print(f'Sucessfully withdraw: R${value}, actual balance is R${self.balance}')
+                    print(f'Sucessfully withdraw: R${value} an account id: {self.nAccount}, actual balance is R${self.balance}')
                     return
                 else:
                     print('Impossible without overdraft')

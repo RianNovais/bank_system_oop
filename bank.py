@@ -87,7 +87,7 @@ class Bank():
             print(f'Id: {customer.id} | First Name: {customer.FirstName} | Last Name: {customer.LastName} |'
                   f' Age: {customer.Age} | Cpf: {customer.Cpf} | Address: {customer.Address} | Email: {customer.Email} ')
 
-    def list_accounts(self):
+    def list_accounts(self): #listar as contas, checking e saving
         print('Saving accounts:')
         for sAccounts in self.saving_accounts:
             print(f'Id: {sAccounts.nAccount} | Customer: {sAccounts.Customer} | Balance: R${sAccounts.balance}')
@@ -95,7 +95,14 @@ class Bank():
         for cAccounts in self.checking_accounts:
             print(f'Id: {cAccounts.nAccount} | Customer: {cAccounts.Customer} | Balance: R${cAccounts.balance}')
 
-
+    def search_account(self, accNumber): #busca a conta com o numero dela, usada na função de sacar e depositar de uma determinada conta
+        for accounts in self.saving_accounts:
+            if accounts.nAccount == accNumber:
+                account = accounts
+        for accounts in self.checking_accounts:
+            if accounts.nAccount == accNumber:
+                account = accounts
+        return account
 if __name__ == "__main__":
     print(help(CheckingAccount))
     # b = Bank()
