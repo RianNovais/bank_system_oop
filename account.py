@@ -3,9 +3,9 @@ from itertools import count
 nAccount = count(start = 1)
 
 class Account(ABC):
-    def __init__(self, CustomerID: int):
+    def __init__(self, Customer: int):
         self.nAccount = next(nAccount)
-        self.CustomerId = CustomerID
+        self.Customer = Customer
         self.balance = 0
 
     @abstractmethod
@@ -18,8 +18,8 @@ class Account(ABC):
 
 
 class SavingAccount(Account):
-    def __init__(self, CustomerID):
-        super().__init__(CustomerID)
+    def __init__(self, Customer):
+        super().__init__(Customer)
         self.Overdraft = False
 
     def deposit(self, value):
@@ -52,8 +52,8 @@ class SavingAccount(Account):
 
 
 class CheckingAccount(Account):
-    def __init__(self, CustomerID):
-        super().__init__(CustomerID)
+    def __init__(self, Customer):
+        super().__init__(Customer)
         self.Overdraft = True
 
     def deposit(self, value):

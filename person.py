@@ -16,6 +16,9 @@ class Customer(Person):
         self.Cpf = Cpf
         self.Email = Email
 
+    def __repr__(self):
+        return f'({self.FirstName},{self.LastName},{self.Age},{self.Address},{self.Cpf},{self.Email})'
+
 
 if __name__ == "__main__":
     c1 = Customer('Rian', 'Muniz', 20, 'Rua Ibicarai', '09984751570', 'riannovais3@gmail.com')
