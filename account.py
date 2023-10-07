@@ -2,8 +2,16 @@ from abc import ABC,abstractmethod
 from itertools import count
 from gmail import Gmail
 nAccount = count(start = 1)
-
 g = Gmail()
+
+# We have a class "Account" being the abstract class, with the abstract methods "deposit" and "withdraw".
+# and we have the child classes "SavingAccount" and "CheckingAccount" which implement the methods and also an
+# id with auto increment +1. In this module, we have instantiated the Gmail class, which has methods for triggering
+# emails via SMTP. We have implemented the "send_mail_new_account_saving" method in the SavingAccount class and the
+# send_mail_new_account_checking method in the CheckingAccount class, both of which send personalized emails to the
+# email address of the client who opened the account, informing them of the opening automatically when either class is
+# instantiated.
+
 class Account(ABC):
     def __init__(self, Customer: int):
         self.nAccount = next(nAccount)
@@ -17,7 +25,6 @@ class Account(ABC):
     @abstractmethod
     def withdraw(self, value: int):
         ...
-
 
 class SavingAccount(Account):
     def __init__(self, Customer):
@@ -54,7 +61,6 @@ class SavingAccount(Account):
             self.balance = self.balance - value
             print(f'Sucessfully withdraw: R${value}, actual balance is R${self.balance}')
 
-
 class CheckingAccount(Account):
     def __init__(self, Customer):
         super().__init__(Customer)
@@ -89,14 +95,8 @@ class CheckingAccount(Account):
         self.balance = self.balance - value
         print(f'Sucessfully withdraw: R${value}, actual balance is R${self.balance}')
 
-
 if __name__ == "__main__":
-    cc = CheckingAccount(12)
-    print(cc.balance)
-    cc.deposit(10)
-    cc.withdraw(10)
-    cc.withdraw(1)
-
+    ...
 
 
 

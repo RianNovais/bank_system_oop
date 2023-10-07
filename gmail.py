@@ -8,6 +8,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# The gmail class has the functionality to send emails using python via the gmail SMTP server, using smtplib, it has
+# methods to send emails to the user when an account is created, be it "SavingAccount" or "CheckingAccount", an email is
+#sent with a personalized message that comes from HTML and processed using string.Template , all sensitive information
+# is brought from the .env file and loaded via load-dotenv.
+
 
 class Gmail():
 

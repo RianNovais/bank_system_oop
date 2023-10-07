@@ -2,19 +2,21 @@
 import bank
 
 '''
-Classe principal
-Aqui possui o menu para interação com o usuário
+Main class
+Here you have the menu for interaction with the user
+
 '''
 
 print('Bank System')
 b = bank.Bank()
+
+# a bank is instantiated and the methods come from it. It serves as a hub, connecting clients and accounts
 
 while True:
     choiceUser = int(input('Choice an option: \n1-Add customer\n2-Add Account\n3-List Customers\n4-List Accounts\n5-Choice an account\n6-EXIT\n'))
 
     if choiceUser == 1:
         b.add_customer()
-
     elif choiceUser == 2:
         typeAccount = int(input('1 - Saving Account\n2 - Checking Account\n'))
         if typeAccount == 1:
@@ -23,14 +25,11 @@ while True:
             b.add_checking_account()
     elif choiceUser == 3:
         b.list_customers()
-
     elif choiceUser == 4:
         b.list_accounts()
-
     elif choiceUser == 5:
         accNumber = int(input('Number of the account'))
         account = b.search_account(accNumber)
-
         choiceTransaction = int(input('Choice an option:\n1 - Deposit an account | 2 - Withdraw an account '))
         if choiceTransaction == 1:
             value = float(input('Value to deposit: '))
@@ -40,18 +39,10 @@ while True:
             account.withdraw(value)
         else:
             print('Choice an valid option')
-
-        ...
-
-
-
     elif choiceUser == 6:
         break
-
     else:
         print('Choice an valid option')
-
-    ...
 
 
 
